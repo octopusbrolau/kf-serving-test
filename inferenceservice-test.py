@@ -1,17 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# ## Install required packages
-
-# In[ ]:
-
-
-get_ipython().system('pip install onepanel-sdk==1.0.1 requests')
-
-
-# ## Import functions, classes
-
-# In[1]:
 
 
 from __future__ import print_function
