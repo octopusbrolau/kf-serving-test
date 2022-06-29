@@ -11,8 +11,7 @@ import json
 import time
 
 import requests
-import numpy as np 
-
+import pickle
 import onepanel.core.api
 from onepanel.core.api.rest import ApiException
 import onepanel.core.auth
@@ -66,9 +65,11 @@ with onepanel.core.api.ApiClient(configuration) as api_client:
 
 # In[8]:
 
+with open('./img.pkl','rb') as f:
+    img_data = pickle.load(f)
 
 data = {
-    'instances': np.random.randint(255, size=(1, 224,224,3)).tolist()
+    'instances': img_data
 }
 
 
