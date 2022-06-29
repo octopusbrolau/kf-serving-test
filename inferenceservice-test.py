@@ -25,7 +25,7 @@ from pprint import pprint
 
 # If inside of Onepanel, get mounted service account token to use as API Key
 access_token = onepanel.core.auth.get_access_token()
-print('---access_token----', access_token)
+
 print('---ONEPANEL_API_URL----', os.getenv('ONEPANEL_API_URL'))
 # Configure API key authorization: Bearer
 configuration = onepanel.core.api.Configuration(
@@ -77,6 +77,8 @@ headers = {
     'onepanel-access-token': access_token
 }
 
+print('headers', headers)
+print('endpoint', endpoint)
 r = requests.post(endpoint, headers=headers, json=data)
 
 result = r.json()
