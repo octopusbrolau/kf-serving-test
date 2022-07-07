@@ -65,7 +65,7 @@ with onepanel.core.api.ApiClient(configuration) as api_client:
 
 # In[8]:
 
-with open('./img.pkl','rb') as f:
+with open('./persons.pkl','rb') as f:
     img_data = pickle.load(f)
 
 data = {
