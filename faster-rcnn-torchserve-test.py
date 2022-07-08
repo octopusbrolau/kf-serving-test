@@ -14,20 +14,13 @@ from onepanel.core.api.rest import ApiException
 import onepanel.core.auth
 from pprint import pprint
 
-
-# ## Get Onepanel Access Token for network requests
-
-# In[2]:
-
-# username = 'admin'
-# token = '5aed14f5bffc9f86fd0fb2745519f2ff'
-# host = 'http://onepanel.niuhongxing.cn/api'
-# access_token = onepanel.core.auth.get_access_token(username=username, token=token, host=host)
+# If inside of Onepanel, get mounted service account token to use as API Key
 access_token = onepanel.core.auth.get_access_token()
-print('---access_token----', access_token)
+
+print('---ONEPANEL_API_URL----', os.getenv('ONEPANEL_API_URL'))
 # Configure API key authorization: Bearer
 configuration = onepanel.core.api.Configuration(
-    host=host,
+    host=os.getenv('ONEPANEL_API_URL'),
     api_key={
         'authorization': access_token
     }
