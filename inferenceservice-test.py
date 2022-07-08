@@ -65,21 +65,13 @@ with onepanel.core.api.ApiClient(configuration) as api_client:
 
 # In[8]:
 
-# with open('./img.pkl','rb') as f:
-#     img_data = pickle.load(f)
-
-# data = {
-#     'instances': img_data
-# }
-import base64
-image = open('./persons.jpg', 'rb') #open binary file in read mode
-image_read = image.read()
-image_64_encode = base64.b64encode(image_read)
-bytes_array = image_64_encode.decode('utf-8')
+with open('./img.pkl','rb') as f:
+    img_data = pickle.load(f)
 
 data = {
-    'instances': bytes_array
+    'instances': img_data
 }
+
 
 
 headers = {
