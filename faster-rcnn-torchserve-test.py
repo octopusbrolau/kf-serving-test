@@ -1,6 +1,3 @@
-
-
-
 from __future__ import print_function
 
 import io
@@ -22,14 +19,15 @@ from pprint import pprint
 
 # In[2]:
 
-
-# If inside of Onepanel, get mounted service account token to use as API Key
+# username = 'admin'
+# token = '5aed14f5bffc9f86fd0fb2745519f2ff'
+# host = 'http://onepanel.niuhongxing.cn/api'
+# access_token = onepanel.core.auth.get_access_token(username=username, token=token, host=host)
 access_token = onepanel.core.auth.get_access_token()
-
-print('---ONEPANEL_API_URL----', os.getenv('ONEPANEL_API_URL'))
+print('---access_token----', access_token)
 # Configure API key authorization: Bearer
 configuration = onepanel.core.api.Configuration(
-    host=os.getenv('ONEPANEL_API_URL'),
+    host=host,
     api_key={
         'authorization': access_token
     }
@@ -63,31 +61,31 @@ with onepanel.core.api.ApiClient(configuration) as api_client:
         print("Exception when calling InferenceServiceApi->get_inference_service_status: %s\n" % e)
 
 
-# In[8]:
+
+
+headers = {
+    'Content-Type': 'application/json',
+}
 
 with open('./persons.pkl','rb') as f:
     img_data = pickle.load(f)
 
 data = {
-    'instances': img_data
+    'instances': [
+        {'data': img_data}
+    ]
 }
 
-
 headers = {
-    'onepanel-access-token': access_token
+    'onepanel-access-token': access_token,
+    'Content-Type': 'application/json',
 }
 
 print('headers', headers)
 print('endpoint', endpoint)
-r = requests.post(endpoint, headers=headers, json=data)
+
+r = requests.post(endpoint, headers=headers, data=json.dumps(data))
 
 result = r.json()
-
 print(result)
-
-
-# In[ ]:
-
-
-
 
