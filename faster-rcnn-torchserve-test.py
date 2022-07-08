@@ -60,14 +60,19 @@ headers = {
     'Content-Type': 'application/json',
 }
 
-with open('./persons.pkl','rb') as f:
-    img_data = pickle.load(f)
+import base64
+image = open('./persons.jpg', 'rb') #open binary file in read mode
+image_read = image.read()
+image_64_encode = base64.b64encode(image_read)
+bytes_array = image_64_encode.decode('utf-8')
 
 data = {
     'instances': [
-        {'data': img_data}
+        {'data': bytes_array}
     ]
 }
+
+
 
 headers = {
     'onepanel-access-token': access_token,
