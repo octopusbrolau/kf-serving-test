@@ -78,9 +78,7 @@ image_64_encode = base64.b64encode(image_read)
 bytes_array = image_64_encode.decode('utf-8')
 
 data = {
-    'instances': [
-        {'data': bytes_array}
-    ]
+    'instances': bytes_array
 }
 
 
