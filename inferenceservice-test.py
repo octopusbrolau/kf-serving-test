@@ -9,7 +9,7 @@ import time
 import base64
 import json
 import time
-
+import numpy as np 
 import requests
 import pickle
 import onepanel.core.api
@@ -86,8 +86,10 @@ result = r.json()
 
 print(result)
 
-
-# In[ ]:
+with open('imagenet1000_clsidx_to_labels.txt') as f:
+    labels = eval(f.read())
+    
+print(labels[np.array(result['predictions'][0]).argmax()])
 
 
 
